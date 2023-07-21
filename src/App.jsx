@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import './App.css';
 import symbolSdk from 'symbol-sdk';
+import axios from 'axios';
 
-const sendClick = () => {
+const sendClick = async () => {
   const facade = new symbolSdk.facade.SymbolFacade('testnet');
   const transaction = facade.transactionFactory.create({
     type: 'transfer_transaction_v1',
@@ -25,6 +26,27 @@ const sendClick = () => {
 
   const hash = facade.hashTransaction(transaction).toString();
   console.log(hash);
+
+  const header = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+  };
+  const putRes = await axios.put(
+    `${import.meta.env.VITE_NODE}/transaction`,
+    jsonPayload,
+    {
+      headers: header,
+    }
+  );
+  console.log(putRes.data);
+
+  const statusRes = await axios.get(
+    `${import.meta.env.VITE_NODE}/transactionStatus/${hash}`,
+    {
+      headers: header,
+    }
+  );
+  console.log(statusRes.data);
 };
 function App() {
   const [count, setCount] = useState(0);
