@@ -1,0 +1,42 @@
+diff --git a/node_modules/symbol-sdk/src/CryptoTypes.js b/node_modules/symbol-sdk/src/CryptoTypes.js
+index 6fd976c..5bf9a7e 100644
+--- a/node_modules/symbol-sdk/src/CryptoTypes.js
++++ b/node_modules/symbol-sdk/src/CryptoTypes.js
+@@ -23,6 +23,7 @@ export class Hash256 extends ByteArray {
+ 		return new Hash256(new Uint8Array(Hash256.SIZE));
+ 	}
+ }
++Object.defineProperty(Hash256, 'name', { value: 'Hash256' })
+ 
+ /**
+  *  Represents a private key.
+@@ -46,6 +47,7 @@ export class PrivateKey extends ByteArray {
+ 		return new PrivateKey(crypto.randomBytes(PrivateKey.SIZE));
+ 	}
+ }
++Object.defineProperty(PrivateKey, 'name', { value: 'PrivateKey' })
+ 
+ /**
+  *  Represents a public key.
+@@ -61,6 +63,7 @@ export class PublicKey extends ByteArray {
+ 		super(PublicKey.SIZE, publicKey instanceof PublicKey ? publicKey.bytes : publicKey);
+ 	}
+ }
++Object.defineProperty(PublicKey, 'name', { value: 'PublicKey' })
+ 
+ /**
+  *  Represents a 256-bit symmetric encryption key.
+@@ -76,6 +79,7 @@ export class SharedKey256 extends ByteArray {
+ 		super(SharedKey256.SIZE, sharedKey);
+ 	}
+ }
++Object.defineProperty(SharedKey256, 'name', { value: 'SharedKey256' })
+ 
+ /**
+  *  Represents a signature.
+@@ -99,3 +103,4 @@ export class Signature extends ByteArray {
+ 		return new Signature(new Uint8Array(Signature.SIZE));
+ 	}
+ }
++Object.defineProperty(Signature, 'name', { value: 'Signature' })
+\ No newline at end of file
