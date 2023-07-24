@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { Configuration, TransactionRoutesApi } from "rest";
-import symbolSdk from "symbol-sdk";
-import "./App.css";
+import { useState } from 'react';
+import { Configuration, TransactionRoutesApi } from 'rest';
+import symbolSdk from 'symbol-sdk';
+import './App.css';
 
 const sendClick = async () => {
-  const facade = new symbolSdk.facade.SymbolFacade("testnet");
+  const facade = new symbolSdk.facade.SymbolFacade('testnet');
 
   const transaction = facade.transactionFactory.create({
-    type: "transfer_transaction_v1",
+    type: 'transfer_transaction_v1',
     signerPublicKey: import.meta.env.VITE_PUBLIC_KEY,
     fee: 1000000n,
     deadline: BigInt(Date.now()) - 1667250467n * 1000n + 7200000n,
